@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Kakao Image</string>
+    <string name="splash_title">Kakao Images</string>
+    <string name="common_app_exit_msg">뒤로가기 버튼을 한번 더 누르시면 종료됩니다</string>
+
+</resources>

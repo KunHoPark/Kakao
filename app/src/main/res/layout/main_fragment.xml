@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leo.kakao.ui.main.MainViewModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="20dp"
+        android:background="@color/subgray"
+        >
+
+        <EditText
+            android:id="@+id/svSearch"
+            style="@style/T1_BM_T1_WR_01"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:background="#aeaeae"
+            android:focusable="true"
+            android:focusedByDefault="true"
+            android:hint="Search"
+            android:paddingStart="10dp"
+            app:onEditorActionListener="@{viewModel.onEditorActionListener}"
+            android:text="@={viewModel.searchingText}"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@+id/btnSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+            />
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="검색"
+            style="@style/ST1_WM_01"
+            android:background="@color/colorPrimary"
+            app:onSingleClick="@{viewModel.onSingleClick}"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/svSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+        />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinner"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:setSpinnerData="@{viewModel.searchCollectionData}"
+            app:layout_constraintTop_toBottomOf="@+id/svSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipToPadding="false"
+            android:paddingTop="10dp"
+            android:paddingBottom="25dp"
+            android:layout_marginTop="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:onItemListener="@{viewModel.onItemClickListener}"
+            app:listData="@{viewModel.searchResultData}"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
