@@ -29,6 +29,6 @@ interface RemoteApi {
     fun getUserDetail(@Path("id") id: String ): Flowable<UserData>
 
     @GET("v2/search/image")
-    fun getKakaoImage(@QueryMap queries: Map<String, String> ): Flowable<SearchData>
+    fun getKakaoImage(@Query("query")query: String, @Query("page")page: Int, @Query("size")size: Int ): Flowable<SearchData>
 
 }

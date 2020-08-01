@@ -8,7 +8,7 @@ import timber.log.Timber
  * @author LeoPark
  **/
 object LeoLog {
-    var logTag = "GithubStars"
+    var logTag = "Leo"
 
     /** Log a verbose message with optional format args.  */
     @JvmStatic fun v(message: String, vararg args: Any) {

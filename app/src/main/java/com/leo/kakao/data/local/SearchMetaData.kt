@@ -10,10 +10,10 @@ import java.io.Serializable
 data class SearchMetaData(
 
         @SerializedName("total_count")
-        var totalCount: Double,
+        var totalCount: Int,
 
         @SerializedName("pageable_count")
-        var pageableCount: Double,
+        var pageableCount: Int,
 
         @SerializedName("is_end")
         var isEnd: Boolean

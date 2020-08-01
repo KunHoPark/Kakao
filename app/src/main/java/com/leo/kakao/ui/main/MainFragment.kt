@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.jaredrummler.materialspinner.MaterialSpinner
 import com.leo.kakao.databinding.MainFragmentBinding
 import com.leo.kakao.di.scope.ActivityScoped
 import com.leo.kakao.extension.hideKeyboard
-import com.leo.kakao.extension.isKeyboardShow
 import com.leo.kakao.ui.base.BaseFragment
+import com.leo.kakao.util.InfiniteScrollListener
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
@@ -28,15 +27,6 @@ class MainFragment @Inject constructor() : BaseFragment() {
     private lateinit var viewModel: MainViewModel
     private lateinit var viewDataBinding: MainFragmentBinding
     @Inject lateinit var viewModelFactory: MainViewModelFactory
-
-    private val ANDROID_VERSIONS = arrayListOf(
-        "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb", "Ice Cream Sandwich", "Jelly Bean", "KitKat", "Lollipop", "Marshmallow", "Nougat", "Oreo",
-        "Cupcake2", "Donut2", "Eclair2", "Froyo2", "Gingerbread2", "Honeycomb2", "Ice Cream Sandwich2", "Jelly Bean2", "KitKat2", "Lollipop2", "Marshmallow2", "Nougat2", "Oreo2",
-        "Cupcake3", "Donut3", "Eclair3", "Froyo3", "Gingerbread3", "Honeycomb3", "Ice Cream Sandwich3", "Jelly Bean3", "KitKat3", "Lollipop3", "Marshmallow3", "Nougat3", "Oreo3"
-    )
-    private val ANDROID_VERSIONS_1 = arrayListOf(
-        "All"
-    )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -55,21 +45,18 @@ class MainFragment @Inject constructor() : BaseFragment() {
         }
 
         subscribe()
-
-
-        spinner.setItems(ANDROID_VERSIONS)
-        spinner.setOnItemSelectedListener(object: MaterialSpinner.OnItemSelectedListener<String> {
-            override fun onItemSelected( view: MaterialSpinner?, position: Int, id: Long, item: String?) {
-                spinner.setItems(ANDROID_VERSIONS_1)
-            }
-        })
-
     }
 
     override fun subscribe() {
         viewModel?.run {
             hideKeyboardLiveEvent.observe(this@MainFragment, Observer {
                 svSearch.hideKeyboard()
+            })
+            searchingLiveEvent.observe(this@MainFragment, Observer {
+                recycler.adapter?.let { adapter ->
+                    adapter.notifyDataSetChanged()
+                }
+                viewModel.searching(it.first, it.second)
             })
         }
 

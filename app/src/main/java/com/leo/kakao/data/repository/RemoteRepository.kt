@@ -18,12 +18,14 @@ import java.util.*
 class RemoteRepository(private val remoteApi: RemoteApi, private val userDao: UserDao) {
 
 
-    fun loadKakaoImage(searchValue: String, page: Int=1, perPage: Int=20): Flowable<SearchData> {
+    fun loadKakaoImage(searchValue: String, page: Int=1, size: Int=80): Flowable<SearchData> {
         return if (NetworkUtil.isNetworkAvailAble()) {
-            val quereis = HashMap<String, String>()
-            quereis["query"] = searchValue
+//            val quereis = HashMap<String, String>()
+//            quereis["query"] = searchValue
+//            quereis["page"] = page
+//            quereis["size"] = size
 
-            remoteApi.getKakaoImage(quereis).subscribeOn(Schedulers.io())
+            remoteApi.getKakaoImage(searchValue, page, size).subscribeOn(Schedulers.io())
         }else{
             Flowable.error {throw IOException("Network connection fail")}
         }

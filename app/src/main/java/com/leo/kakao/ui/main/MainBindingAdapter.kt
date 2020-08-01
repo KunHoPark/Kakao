@@ -3,12 +3,14 @@ package com.leo.kakao.ui.main
 import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.leo.kakao.adapter.MainAdapter
 import com.leo.kakao.callback.OnItemClickListener
 import com.leo.kakao.data.local.SearchResultData
 import com.leo.kakao.data.local.UserData
+import com.leo.kakao.util.InfiniteScrollListener
 
 
 /**
@@ -18,31 +20,43 @@ import com.leo.kakao.data.local.UserData
 object MainBindingAdapter {
 
 
-    @BindingAdapter("onItemListener", "listData")
+    @BindingAdapter("onItemListener", "onScollListener","listData", requireAll = false)
     @JvmStatic
-    fun setMainAdapter(view: RecyclerView, listener: OnItemClickListener, data: ArrayList<SearchResultData>) {
+    fun setMainAdapter(view: RecyclerView, listener: OnItemClickListener, scrollListener: InfiniteScrollListener, data: ArrayList<SearchResultData>?) {
         view.adapter?.run {
             if (this is MainAdapter) {
-                addItems(data)
+                data?.let {
+                    addItems(it)
+                }
             }
         } ?: run {
             MainAdapter()
                 .apply {
                     view.adapter = this
                     setOnItemClickListener(listener)
+                    scrollListener.layoutManager = view.layoutManager as LinearLayoutManager
+                    view.addOnScrollListener(scrollListener)
                 }
         }
 
     }
 
-    @BindingAdapter("setSpinnerData", requireAll = false)
+    @BindingAdapter("setSpinnerData")
     @JvmStatic
-    fun setSpinnerData(view: MaterialSpinner, data: ArrayList<String>?) {
+    fun setSpinnerData(view: MaterialSpinner, data: ArrayList<String>) {
         data?.let {
-            view.setItems(it)
-        }?:let {
-            view.setItems(arrayListOf("All"))
+            if (data.size<=0){
+                view.setItems(arrayListOf("All"))
+            } else {
+                view.setItems(it)
+            }
         }
+    }
+
+    @BindingAdapter("setSpinnerOnItemSelectedListener")
+    @JvmStatic
+    fun setSpinnerOnItemSelectedListener(view: MaterialSpinner, listener: MaterialSpinner.OnItemSelectedListener<*>){
+        view.setOnItemSelectedListener(listener)
     }
 
     @BindingAdapter("onEditorActionListener")
