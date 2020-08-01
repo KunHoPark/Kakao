@@ -20,12 +20,12 @@ class RetrofitLogger(private val prettyPrinting : Boolean) : HttpLoggingIntercep
         if(message.isNullOrEmpty()) return
 
         if(!prettyPrinting) {
-            splitLogs(message!!)
+            splitLogs(message)
             return
         }
 
         var jsonString: JsonObject? = null
-        var isJson = false
+        var isJson :Boolean
 
         try {
             jsonString = JsonParser().parse(message) as JsonObject
@@ -41,7 +41,7 @@ class RetrofitLogger(private val prettyPrinting : Boolean) : HttpLoggingIntercep
         }
 
         if (!isJson) {
-            printLogChunk(message!!)
+            printLogChunk(message)
             return
         }
 

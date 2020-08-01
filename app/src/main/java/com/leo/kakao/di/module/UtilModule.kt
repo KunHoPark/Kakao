@@ -11,7 +11,6 @@ import javax.inject.Singleton
  * RepositoryModule
  * AppComponent에 연결 된다.
  * @author parkkh
- * @since 2019. 9. 3
  **/
 @Module
 class UtilModule {

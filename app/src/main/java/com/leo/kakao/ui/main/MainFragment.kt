@@ -48,7 +48,7 @@ class MainFragment @Inject constructor() : BaseFragment() {
     }
 
     override fun subscribe() {
-        viewModel?.run {
+        viewModel.run {
             hideKeyboardLiveEvent.observe(this@MainFragment, Observer {
                 svSearch.hideKeyboard()
             })

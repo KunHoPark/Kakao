@@ -1,8 +1,6 @@
 package com.leo.kakao.util
 
 object Constants {
-    const val PERPAGE = 30
-
     const val HTTP_LOGGING_PRETTY_PRINTING_ENABLE = true
 
     const val HOST_BASE_URL = "https://dapi.kakao.com/"

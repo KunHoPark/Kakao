@@ -29,7 +29,7 @@ class MainAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         listData?.let {
             if (it.size>position){
-                it[position]?.let { item ->
+                it[position].let { item ->
                     (holder as MainBindingViewHolder).onBind(item, position, searchWord)
                 }
             }

@@ -53,7 +53,7 @@ class MainViewModel
                 collectionData.apply {
                     clear()
                 }
-                searchResultHashMap?.let { hashMap ->
+                searchResultHashMap.let { hashMap ->
                     hashMap.clear()
                 }
                 listData.clear()
@@ -160,7 +160,6 @@ class MainViewModel
                 listData.clear()
                 searchingLiveEvent.value =searchingText.get().toString() to getCollectionData
             }
-            true
         }
         false
     }

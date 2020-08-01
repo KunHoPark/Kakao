@@ -9,7 +9,6 @@ import com.jaredrummler.materialspinner.MaterialSpinner
 import com.leo.kakao.adapter.MainAdapter
 import com.leo.kakao.callback.OnItemClickListener
 import com.leo.kakao.data.local.SearchResultData
-import com.leo.kakao.data.local.UserData
 import com.leo.kakao.util.InfiniteScrollListener
 
 
@@ -44,7 +43,7 @@ object MainBindingAdapter {
     @BindingAdapter("setSpinnerData")
     @JvmStatic
     fun setSpinnerData(view: MaterialSpinner, data: ArrayList<String>) {
-        data?.let {
+        data.let {
             if (data.size<=0){
                 view.setItems(arrayListOf("All"))
             } else {

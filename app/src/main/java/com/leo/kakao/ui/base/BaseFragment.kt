@@ -17,7 +17,7 @@ import io.reactivex.subjects.PublishSubject
  * Fragment의 Base class.
  * @author LeoPark
  **/
-open abstract class BaseFragment: DaggerFragment() {
+abstract class BaseFragment: DaggerFragment() {
     lateinit var viewDisposables : AutoClearedDisposable
     protected var onActivityList: OnActivityListener?=null
 

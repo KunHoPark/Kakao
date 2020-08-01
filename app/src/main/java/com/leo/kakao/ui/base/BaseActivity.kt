@@ -16,10 +16,10 @@ import java.util.concurrent.TimeUnit
  * Activity의 Base class.
  * @author LeoPark
  **/
-open abstract class BaseActivity: DaggerAppCompatActivity() {
+abstract class BaseActivity: DaggerAppCompatActivity() {
 
     internal var viewDisposables =  AutoClearedDisposable(lifecycleOwner = this, alwaysClearOnStop = false)
-    protected val backButtonClickSource = PublishSubject.create<Boolean>()!!
+    protected val backButtonClickSource = PublishSubject.create<Boolean>()
     open val onActivityListener: OnActivityListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?){

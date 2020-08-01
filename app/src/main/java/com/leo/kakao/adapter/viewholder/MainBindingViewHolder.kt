@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leo.kakao.BR
 import com.leo.kakao.callback.OnItemClickListener
 import com.leo.kakao.data.local.SearchResultData
-import com.leo.kakao.data.local.UserData
 import com.leo.kakao.databinding.ItemMainViewHolderBinding
 
 /**

@@ -21,6 +21,6 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRemoteRepository( @Named("authorized") authRestAdapter: Retrofit, bookmarkRoomDatabase: BookmarkRoomDatabase): RemoteRepository =
-            RemoteRepository(authRestAdapter.create(RemoteApi::class.java), bookmarkRoomDatabase.userDao())
+            RemoteRepository(authRestAdapter.create(RemoteApi::class.java), bookmarkRoomDatabase.searchLocalDao())
 
 }

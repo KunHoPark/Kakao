@@ -83,7 +83,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="25dp"
             android:layout_marginTop="10dp"
-            app:layoutManager=".util.MyLinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:onItemListener="@{viewModel.onItemClickListener}"
             app:listData="@{viewModel.listData}"
             app:onScollListener="@{viewModel.infiniteScrollListener}"

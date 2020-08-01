@@ -9,7 +9,7 @@ import io.reactivex.subjects.PublishSubject
  * ViwModel의 Base class.
  * @author LeoPark
  **/
-open abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel: ViewModel() {
 
    lateinit var viewDisposables: AutoClearedDisposable
    val message: PublishSubject<String> = PublishSubject.create()

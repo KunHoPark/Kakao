@@ -18,7 +18,7 @@ class LocalDataModule {
     @Provides
     @Singleton
     fun provideBookmarkDatabase(application : Application): BookmarkRoomDatabase
-            = Room.databaseBuilder(application, BookmarkRoomDatabase::class.java, "github_bookmark_user.db")
+            = Room.databaseBuilder(application, BookmarkRoomDatabase::class.java, "bookmark_search.db")
                 .allowMainThreadQueries()
                 .build()
 }
