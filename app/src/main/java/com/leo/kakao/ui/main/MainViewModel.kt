@@ -33,7 +33,7 @@ class MainViewModel
     val hideKeyboardLiveEvent = SingleLiveEvent<Unit>()
     val searchingLiveEvent = SingleLiveEvent<Pair<String, (List<SearchResultData>)->Unit>>()
 
-    val searchingText = ObservableField<String>("태희")
+    val searchingText = ObservableField<String>()
     val listData = ObservableArrayList<SearchResultData>()
     private val searchResultHashMap = HashMap<String, ArrayList<SearchResultData>>()
     val collectionData = ObservableArrayList<String>()
